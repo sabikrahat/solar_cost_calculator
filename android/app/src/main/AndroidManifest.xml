@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sabikrahat.solar_cost_calculator">
    <application
-        android:label="solar_cost_calculator"
+        android:label="Solar Cost Calculator"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart'
         BorderRadius,
         BoxDecoration,
         Brightness,
+        Color,
         Colors,
         EdgeInsets,
         FloatingLabelBehavior,
@@ -17,12 +18,14 @@ import 'package:flutter/material.dart'
         VisualDensity;
 import 'package:flutter/services.dart' show Brightness, SystemUiOverlayStyle;
 import 'package:google_fonts/google_fonts.dart' show GoogleFonts;
-import 'package:solar_cost_calculator/helpers/constants/constants.dart' show kLightPrimaryColor, white;
+import 'package:solar_cost_calculator/helpers/constants/constants.dart'
+    show kLightPrimaryColor, white;
 
 SystemUiOverlayStyle lightUiConfig = SystemUiOverlayStyle(
-  systemNavigationBarIconBrightness: Brightness.dark,
-  systemNavigationBarColor: kLightPrimaryColor,
-  statusBarIconBrightness: Brightness.dark,
+  systemNavigationBarIconBrightness: Brightness.light,
+  systemNavigationBarColor: const Color(0xff574844),
+  statusBarIconBrightness: Brightness.light,
+  statusBarBrightness: Brightness.light,
   statusBarColor: kLightPrimaryColor,
 );
 
@@ -33,14 +36,14 @@ ThemeData lightTheme = ThemeData(
   iconTheme: lightIconThemeData,
   inputDecorationTheme: lightInputDecorationTheme,
   scaffoldBackgroundColor: white,
-  primarySwatch: Colors.blue,
+  primarySwatch: Colors.brown,
   visualDensity: VisualDensity.adaptivePlatformDensity,
 );
 
-AppBarTheme lightAppBarTheme = AppBarTheme(
-  elevation: 0.0,
-  backgroundColor: kLightPrimaryColor,
-  titleTextStyle: const TextStyle(
+AppBarTheme lightAppBarTheme = const AppBarTheme(
+  elevation: 1.0,
+  backgroundColor: Colors.white,
+  titleTextStyle: TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.bold,
   ),
@@ -50,7 +53,7 @@ IconThemeData lightIconThemeData = IconThemeData(color: kLightPrimaryColor);
 
 InputDecorationTheme lightInputDecorationTheme = InputDecorationTheme(
   floatingLabelBehavior: FloatingLabelBehavior.always,
-  contentPadding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+  contentPadding: const EdgeInsets.fromLTRB(15.0, 5.0, 0.0, 5.0),
   enabledBorder: lightOutlineInputBorder,
   focusedBorder: lightOutlineInputBorder,
   border: lightOutlineInputBorder,

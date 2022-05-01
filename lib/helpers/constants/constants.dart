@@ -5,14 +5,17 @@ import 'package:intl/intl.dart' show DateFormat, NumberFormat;
 Color white = Colors.white;
 Color black = Colors.black;
 
-Color kLightPrimaryColor = Colors.blue.shade900.withOpacity(0.85);
+Color kLightPrimaryColor = const Color(0xff54443f).withOpacity(0.85);
 
-DateFormat dateFormat = DateFormat('dd-MM-yy');
+DateFormat dateFormat = DateFormat('yyyy-MM-dd');
+DateFormat dateBirthDateFormat = DateFormat.MMMMd();
+DateFormat dateDetailFormat = DateFormat.yMMMMEEEEd();
 DateFormat timeFormat = DateFormat('hh:mm:ss a');
 NumberFormat numberFormat = NumberFormat('#,##,000.0#');
 
 DateTime get getCurrentDateTime => DateTime.now();
 String get getCurrentFormattedDate => dateFormat.format(DateTime.now());
+String get getCurrentDetailDate => dateDetailFormat.format(DateTime.now());
 String get getCurrentFormattedTime => timeFormat.format(DateTime.now());
 
 //WebView User Agent
