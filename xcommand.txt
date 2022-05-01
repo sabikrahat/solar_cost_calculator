@@ -3,7 +3,7 @@ flutter pub get
 flutter build web --release
 cd build/web
 git init
-git remote add origin https://github.com/sabikrahat/puzzle_challenge
+git remote add origin https://github.com/sabikrahat/solar_cost_calculator
 git checkout -b gh-pages
 git add --all
 git commit -m "update"
