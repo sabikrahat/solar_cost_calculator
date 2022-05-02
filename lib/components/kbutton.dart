@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:solar_cost_calculator/helpers/constants/constants.dart';
 
+import '../helpers/constants/constants.dart';
 import '../helpers/size_config/size_config.dart';
 
 class KButton extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:solar_cost_calculator/helpers/constants/constants.dart';
-import 'package:solar_cost_calculator/screens/visualization/visualization.dart';
+import '../helpers/constants/constants.dart';
+import '../screens/visualization/visualization.dart';
 
 import '../helpers/routes/custom_routes.dart';
 import '../screens/home_screen/home_screen.dart';

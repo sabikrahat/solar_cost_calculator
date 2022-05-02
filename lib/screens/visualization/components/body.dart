@@ -2,9 +2,9 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:solar_cost_calculator/components/kradiobutton.dart';
-import 'package:solar_cost_calculator/helpers/size_config/size_config.dart';
-import 'package:solar_cost_calculator/providers/calculation/calculation_pd.dart';
+import '../../../components/kradiobutton.dart';
+import '../../../helpers/size_config/size_config.dart';
+import '../../../providers/calculation/calculation_pd.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class Body extends StatefulWidget {
@@ -62,7 +62,8 @@ class _AsUsualCostState extends State<AsUsualCost> {
   @override
   void initState() {
     var _pd = Provider.of<CalculationPd>(context, listen: false);
-    double _totalCost = _pd.wattageWithHrs! * 6.0;
+    // double _totalCost = (_pd.wattageWithHrs! * 6.0 * 30.0) / 1000;
+    double _totalCost = (_pd.wattageWithHrs! * 6.0 * 30.0) / 100;
     data = [
       GraphData('Jan', _totalCost + Random().nextInt(300) - 150),
       GraphData('Feb', _totalCost + Random().nextInt(300) - 150),
@@ -125,16 +126,16 @@ class _SolarCostState extends State<SolarCost> {
         _pd.batteryPrice(_pd.dcBatterySizeAH!));
     double serviceCharge = 500.0;
     data = [
-      GraphData('Jan', _solarCost + Random().nextInt(1000)),
+      GraphData('Jan', _solarCost + Random().nextInt(500)),
       GraphData('Feb', 0),
       GraphData('Mar', 0),
-      GraphData('Apr', serviceCharge + Random().nextInt(1000)),
+      GraphData('Apr', serviceCharge + Random().nextInt(500)),
       GraphData('May', 0),
       GraphData('Jun', 0),
-      GraphData('Jul', serviceCharge + Random().nextInt(1000)),
+      GraphData('Jul', serviceCharge + Random().nextInt(500)),
       GraphData('Aug', 0),
       GraphData('Sep', 0),
-      GraphData('Oct', serviceCharge + Random().nextInt(1000)),
+      GraphData('Oct', serviceCharge + Random().nextInt(500)),
       GraphData('Nov', 0),
       GraphData('Dec', 0),
     ];

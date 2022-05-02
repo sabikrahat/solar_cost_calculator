@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:solar_cost_calculator/components/kcontainer.dart';
+import '../../components/kcontainer.dart';
 import 'components/body.dart' show Body;
 
 class ResultScreen extends StatelessWidget {

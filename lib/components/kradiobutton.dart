@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:solar_cost_calculator/helpers/size_config/size_config.dart';
+import '../helpers/size_config/size_config.dart';
 
 class KRadioButton extends StatelessWidget {
   const KRadioButton({

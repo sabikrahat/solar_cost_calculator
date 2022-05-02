@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:solar_cost_calculator/components/kappbar.dart';
-import 'package:solar_cost_calculator/helpers/constants/constants.dart';
-import 'package:solar_cost_calculator/helpers/size_config/size_config.dart';
+
+import '../helpers/constants/constants.dart';
+import '../helpers/size_config/size_config.dart';
+import 'kappbar.dart';
 
 class KContainer extends StatelessWidget {
   const KContainer({

@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:solar_cost_calculator/helpers/routes/custom_routes.dart';
-import 'package:solar_cost_calculator/screens/result_screen/result_screen.dart';
+
+import '../../helpers/routes/custom_routes.dart';
+import '../../screens/result_screen/result_screen.dart';
 
 class CalculationPd extends ChangeNotifier {
   reloadUi() => notifyListeners();

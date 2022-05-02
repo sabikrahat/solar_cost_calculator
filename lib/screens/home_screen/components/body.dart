@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:solar_cost_calculator/components/kbutton.dart';
-import 'package:solar_cost_calculator/helpers/size_config/size_config.dart';
-import 'package:solar_cost_calculator/providers/calculation/calculation_pd.dart';
+import '../../../components/kbutton.dart';
+import '../../../helpers/size_config/size_config.dart';
+import '../../../providers/calculation/calculation_pd.dart';
 
 import '../../../helpers/constants/constants.dart';
 

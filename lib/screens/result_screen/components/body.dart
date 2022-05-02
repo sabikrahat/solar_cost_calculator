@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:solar_cost_calculator/helpers/constants/constants.dart';
-import 'package:solar_cost_calculator/helpers/routes/custom_routes.dart';
-import 'package:solar_cost_calculator/providers/calculation/calculation_pd.dart';
-import 'package:solar_cost_calculator/screens/visualization/visualization.dart';
+import '../../../helpers/constants/constants.dart';
+import '../../../helpers/routes/custom_routes.dart';
+import '../../../providers/calculation/calculation_pd.dart';
+import '../../visualization/visualization.dart';
 
 class Body extends StatelessWidget {
   const Body({Key? key}) : super(key: key);
