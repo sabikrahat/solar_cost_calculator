@@ -8,11 +8,13 @@ class KContainer extends StatelessWidget {
     Key? key,
     required this.child,
     this.isHomeScreen = false,
+    this.isCharShow = false,
     this.title = 'Solar Cost Calculator',
   }) : super(key: key);
 
   final Widget child;
   final bool isHomeScreen;
+  final bool isCharShow;
   final String title;
 
   @override
@@ -26,6 +28,7 @@ class KContainer extends StatelessWidget {
             PreferredSize(
               preferredSize: const Size.fromHeight(50.0),
               child: KAppBar(
+                isCharShow: isCharShow,
                 isHomeScreen: isHomeScreen,
                 title: title,
               ),

@@ -26,6 +26,7 @@ class CalculationPd extends ChangeNotifier {
   double? solarPowerWattage;
   double? solarPlate125Need;
   double? solarPlate180Need;
+  double? wattageWithHrs;
 
   CalculationPd() {
     totalTile = 1;
@@ -76,25 +77,25 @@ class CalculationPd extends ChangeNotifier {
       batteryChargingRate = 0;
       solarPlatesCurrent = 0;
       solarPowerWattage = 0;
-      double tempWattageWithHrs = 0;
+      wattageWithHrs = 0;
       for (int i = 0; i < totalTile; i++) {
         inverterWattageP = inverterWattageP! +
             double.parse(wattageCntrlrs[i].text) *
                 double.parse(pcsCntrlrs[i].toString());
-        tempWattageWithHrs = tempWattageWithHrs +
+        wattageWithHrs = wattageWithHrs! +
             double.parse(wattageCntrlrs[i].text) *
                 double.parse(pcsCntrlrs[i].toString()) *
                 double.parse(hoursCntrlrs[i].toString());
       }
       dcCurrentRequiredI = (inverterWattageP! / dcVoltageRequiredV!);
-      dcBatterySizeAH = (tempWattageWithHrs / dcVoltageRequiredV!).toDouble();
+      dcBatterySizeAH = (wattageWithHrs! / dcVoltageRequiredV!).toDouble();
       batteryChargingRate = (dcBatterySizeAH! / 10).toDouble();
       solarPlatesCurrent = (dcCurrentRequiredI! + batteryChargingRate!);
       solarPowerWattage = (dcVoltageRequiredV! * solarPlatesCurrent!);
       solarPlate125Need = solarPowerWattage! / 125;
       solarPlate180Need = solarPowerWattage! / 180;
       debugPrint(
-          'Inverter Wattage: $inverterWattageP\nDC Current Required: $dcCurrentRequiredI\nDC Battery Size: $dcBatterySizeAH\nBattery Charging Rate: $batteryChargingRate\nSolar Plates Current: $solarPlatesCurrent\nSolar Power Wattage: $solarPowerWattage');
+          'Inverter Wattage: $inverterWattageP\nDC Current Required: $dcCurrentRequiredI\nDC Battery Size: $dcBatterySizeAH\nBattery Charging Rate: $batteryChargingRate\nSolar Plates Current: $solarPlatesCurrent\nSolar Power Wattage: $solarPowerWattage\nSolar Plate 125 Need: $solarPlate125Need\nSolar Plate 180 Need: $solarPlate180Need\nWattage With Hours: $wattageWithHrs');
       EasyLoading.dismiss();
       Navigator.push(
         context,
@@ -132,26 +133,26 @@ class CalculationPd extends ChangeNotifier {
     }
   }
 
-  double inverterPrice(double w){
-    if(w <=50){
+  double inverterPrice(double w) {
+    if (w <= 50) {
       return 2500.0;
-    } else if(w <=100){
+    } else if (w <= 100) {
       return 3000.0;
-    } else if(w <=150){
+    } else if (w <= 150) {
       return 3500.0;
-    } else if(w <=200){
+    } else if (w <= 200) {
       return 4000.0;
-    } else if(w <=250){
+    } else if (w <= 250) {
       return 4500.0;
-    } else if(w <=300){
+    } else if (w <= 300) {
       return 5000.0;
-    } else if(w <=350){
+    } else if (w <= 350) {
       return 5500.0;
-    } else if(w <=400){
+    } else if (w <= 400) {
       return 6000.0;
-    } else if(w <=450){
+    } else if (w <= 450) {
       return 6500.0;
-    } else if(w <=500){
+    } else if (w <= 500) {
       return 7000.0;
     } else {
       return 7500.0;

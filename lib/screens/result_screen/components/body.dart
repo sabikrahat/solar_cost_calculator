@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:solar_cost_calculator/helpers/constants/constants.dart';
+import 'package:solar_cost_calculator/helpers/routes/custom_routes.dart';
 import 'package:solar_cost_calculator/providers/calculation/calculation_pd.dart';
+import 'package:solar_cost_calculator/screens/visualization/visualization.dart';
 
 class Body extends StatelessWidget {
   const Body({Key? key}) : super(key: key);
@@ -380,45 +382,22 @@ class Body extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 40.0),
-          Text(
-            'Visualization of Cost Difference',
-            style: TextStyle(
-              decoration: TextDecoration.underline,
-              color: kLightPrimaryColor,
-              fontSize: 18.0,
-              fontWeight: FontWeight.bold,
+          const SizedBox(height: 20.0),
+          ElevatedButton(
+            child: const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 50.0),
+              child: Text('Visualize'),
             ),
-          ),
-          const SizedBox(height: 10.0),
-          Row(
-            children: const [
-              Expanded(
-                child: Text(
-                  'If you use Solar Plate of 125 Wattage:',
-                  style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold),
+            onPressed: () {
+              Navigator.push(
+                context,
+                SlideLeftRoute(
+                  page: const Visualization(),
                 ),
-              ),
-              Text(
-                '',
-                style: TextStyle(fontSize: 15.0),
-              ),
-            ],
+              );
+            },
           ),
-          Row(
-            children: const [
-              Expanded(
-                child: Text(
-                  'If you use Solar Plate of 180 Wattage:',
-                  style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold),
-                ),
-              ),
-              Text(
-                '',
-                style: TextStyle(fontSize: 15.0),
-              ),
-            ],
-          ),
+          const SizedBox(height: 40.0),
         ],
       ),
     );

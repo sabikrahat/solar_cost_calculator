@@ -10,6 +10,7 @@ class ResultScreen extends StatelessWidget {
     return const Scaffold(
       resizeToAvoidBottomInset: true,
       body: KContainer(
+        isCharShow: true,
         title: 'Cost Estimate',
         child: Body(),
       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:solar_cost_calculator/helpers/constants/constants.dart';
+import 'package:solar_cost_calculator/screens/visualization/visualization.dart';
 
 import '../helpers/routes/custom_routes.dart';
 import '../screens/home_screen/home_screen.dart';
@@ -9,10 +10,12 @@ class KAppBar extends StatelessWidget {
   const KAppBar({
     Key? key,
     this.isHomeScreen = false,
+    this.isCharShow = false,
     this.title = 'Solar Cost Calculator',
   }) : super(key: key);
 
   final bool isHomeScreen;
+  final bool isCharShow;
   final String title;
 
   @override
@@ -66,13 +69,31 @@ class KAppBar extends StatelessWidget {
         ],
       ),
       actions: [
-        IconButton(
-          icon: Icon(
-            Icons.history,
-            color: kLightPrimaryColor.withOpacity(0.9),
+        if (isCharShow)
+          Padding(
+            padding: const EdgeInsets.only(right: 12.0),
+            child: InkWell(
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(7.0),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 5.0, vertical: 2.0),
+                  child: Icon(
+                    Icons.line_axis,
+                    color: kLightPrimaryColor.withOpacity(0.9),
+                  ),
+                ),
+              ),
+              onTap: () => Navigator.push(
+                context,
+                SlideLeftRoute(
+                  page: const Visualization(),
+                ),
+              ),
+            ),
           ),
-          onPressed: () {},
-        ),
       ],
     );
   }

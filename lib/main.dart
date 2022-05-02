@@ -47,7 +47,7 @@ class Main extends StatelessWidget {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Solar Cost Calculator',
       theme: _theme.theme,
       home: Wrapper(),
       builder: EasyLoading.init(),
