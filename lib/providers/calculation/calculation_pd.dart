@@ -12,12 +12,27 @@ class CalculationPd extends ChangeNotifier {
   List<TextEditingController> componentsCntrlrs = [];
   List<TextEditingController> wattageCntrlrs = [];
   List<int?> pcsCntrlrs = [];
+  List<double?> hoursCntrlrs = [];
+
+  // Calculation Result
+  double? inverterWattageP;
+  double? dcCurrentRequiredI;
+  double? dcVoltageRequiredV = 12.0;
+
+  double? dcBatterySizeAH; // (P * hrs)/V
+  double? batteryChargingRate;
+  double? solarPlatesCurrent;
+  double? solarPlatesVoltage = 12.0;
+  double? solarPowerWattage;
+  double? solarPlate125Need;
+  double? solarPlate180Need;
 
   CalculationPd() {
     totalTile = 1;
     componentsCntrlrs.add(TextEditingController());
     wattageCntrlrs.add(TextEditingController());
     pcsCntrlrs.add(1);
+    hoursCntrlrs.add(0.5);
   }
 
   addTile() {
@@ -26,6 +41,7 @@ class CalculationPd extends ChangeNotifier {
       componentsCntrlrs.add(TextEditingController());
       wattageCntrlrs.add(TextEditingController());
       pcsCntrlrs.add(1);
+      hoursCntrlrs.add(0.5);
       reloadUi();
     }
   }
@@ -35,6 +51,7 @@ class CalculationPd extends ChangeNotifier {
     componentsCntrlrs.removeLast();
     wattageCntrlrs.removeLast();
     pcsCntrlrs.removeLast();
+    hoursCntrlrs.removeLast();
     reloadUi();
   }
 
@@ -46,18 +63,98 @@ class CalculationPd extends ChangeNotifier {
     componentsCntrlrs.add(TextEditingController());
     wattageCntrlrs.add(TextEditingController());
     pcsCntrlrs.add(1);
+    hoursCntrlrs.add(0.5);
     reloadUi();
   }
 
   void calculateCost(BuildContext context) {
     if (formKey.currentState!.validate()) {
-      EasyLoading.showSuccess('All Okay');
+      EasyLoading.show(status: 'Calculating...');
+      inverterWattageP = 0;
+      dcCurrentRequiredI = 0;
+      dcBatterySizeAH = 0;
+      batteryChargingRate = 0;
+      solarPlatesCurrent = 0;
+      solarPowerWattage = 0;
+      double tempWattageWithHrs = 0;
+      for (int i = 0; i < totalTile; i++) {
+        inverterWattageP = inverterWattageP! +
+            double.parse(wattageCntrlrs[i].text) *
+                double.parse(pcsCntrlrs[i].toString());
+        tempWattageWithHrs = tempWattageWithHrs +
+            double.parse(wattageCntrlrs[i].text) *
+                double.parse(pcsCntrlrs[i].toString()) *
+                double.parse(hoursCntrlrs[i].toString());
+      }
+      dcCurrentRequiredI = (inverterWattageP! / dcVoltageRequiredV!);
+      dcBatterySizeAH = (tempWattageWithHrs / dcVoltageRequiredV!).toDouble();
+      batteryChargingRate = (dcBatterySizeAH! / 10).toDouble();
+      solarPlatesCurrent = (dcCurrentRequiredI! + batteryChargingRate!);
+      solarPowerWattage = (dcVoltageRequiredV! * solarPlatesCurrent!);
+      solarPlate125Need = solarPowerWattage! / 125;
+      solarPlate180Need = solarPowerWattage! / 180;
+      debugPrint(
+          'Inverter Wattage: $inverterWattageP\nDC Current Required: $dcCurrentRequiredI\nDC Battery Size: $dcBatterySizeAH\nBattery Charging Rate: $batteryChargingRate\nSolar Plates Current: $solarPlatesCurrent\nSolar Power Wattage: $solarPowerWattage');
+      EasyLoading.dismiss();
       Navigator.push(
         context,
         SlideLeftRoute(
           page: const ResultScreen(),
         ),
       );
+    }
+  }
+
+  // battery Prices per Ah
+  double batteryPrice(double ah) {
+    if (ah <= 50) {
+      return 8000.0;
+    } else if (ah <= 100) {
+      return 9500.0;
+    } else if (ah <= 150) {
+      return 12000.0;
+    } else if (ah <= 200) {
+      return 14000.0;
+    } else if (ah <= 250) {
+      return 16000.0;
+    } else if (ah <= 300) {
+      return 18000.0;
+    } else if (ah <= 350) {
+      return 20000.0;
+    } else if (ah <= 400) {
+      return 22000.0;
+    } else if (ah <= 450) {
+      return 24000.0;
+    } else if (ah <= 500) {
+      return 26000.0;
+    } else {
+      return 30000.0;
+    }
+  }
+
+  double inverterPrice(double w){
+    if(w <=50){
+      return 2500.0;
+    } else if(w <=100){
+      return 3000.0;
+    } else if(w <=150){
+      return 3500.0;
+    } else if(w <=200){
+      return 4000.0;
+    } else if(w <=250){
+      return 4500.0;
+    } else if(w <=300){
+      return 5000.0;
+    } else if(w <=350){
+      return 5500.0;
+    } else if(w <=400){
+      return 6000.0;
+    } else if(w <=450){
+      return 6500.0;
+    } else if(w <=500){
+      return 7000.0;
+    } else {
+      return 7500.0;
     }
   }
 }

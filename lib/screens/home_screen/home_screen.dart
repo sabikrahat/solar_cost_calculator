@@ -8,9 +8,12 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const KContainer(
-      isHomeScreen: true,
-      child: Body(),
+    return const Scaffold(
+      resizeToAvoidBottomInset: true,
+      body: KContainer(
+        isHomeScreen: true,
+        child: Body(),
+      ),
     );
   }
 }

@@ -7,9 +7,12 @@ class ResultScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const KContainer(
-      title: 'Cost Estimate',
-      child: Body(),
+    return const Scaffold(
+      resizeToAvoidBottomInset: true,
+      body: KContainer(
+        title: 'Cost Estimate',
+        child: Body(),
+      ),
     );
   }
 }
